@@ -203,7 +203,9 @@ terraform destroy --auto-approve
 
 ---
 ### 🛑 Troubleshooting Guide
+
 ❌ 1. Access Denied on S3 Files
+
 Issue: You see an XML error: Access Denied.
 
 Solution:
@@ -218,16 +220,20 @@ aws cloudfront get-distribution --id <distribution_id> --query "Distribution.Dis
 If empty, update your CloudFront settings.
 
 ❌ 2. Website Not Displaying After Deployment
-🔹 Problem: CloudFront returns a 403 error.
-🔹 Solution: Ensure index.html exists in the bucket.
-Invalidate the CloudFront cache:
 
+🔹 Problem: CloudFront returns a 403 error.
+
+🔹 Solution: Ensure index.html exists in the bucket.
+
+Invalidate the CloudFront cache:
 ```sh
 aws cloudfront create-invalidation --distribution-id <distribution_id> --paths "/*"
 ```
 
 ❌ 3. CloudFront Not Showing Updates
+
 🔹 Problem: You updated index.html, but CloudFront still serves the old version.
+
 🔹 Solution: Run:
 
 ```sh
@@ -235,7 +241,9 @@ aws cloudfront create-invalidation --distribution-id <CloudFront-ID> --paths "/*
 ```
 
 ❌ 4. Terraform Apply Fails with Missing Resource Error
+
 🔹 Problem: Terraform fails because it can't find a resource.
+
 🔹 Solution: Destroy and reapply everything:
 
 ```sh
