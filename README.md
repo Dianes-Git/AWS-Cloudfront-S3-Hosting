@@ -277,4 +277,5 @@ Diane Ihezue
 
 DevOps & Cloud Engineer 
 
+---
 🎉 Congratulations on deploying your first AWS-hosted static website using Terraform! 🚀
