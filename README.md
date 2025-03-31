@@ -87,6 +87,25 @@ terraform {
 ```
 Edit: Replace <YOUR_TERRAFORM_ORG> with your Terraform Cloud organization name and <YOUR_TERRAFORM_WORKSPACE> with the workspace name you created in Terraform Cloud.
 
+### ✅ **4. Set Up AWS Credentials in Terraform Cloud**
+1️⃣ Navigate to Terraform Cloud, Select your organization and workspace (<YOUR_WORKSPACE_NAME>).
+
+2️⃣ Open Variables Settings
+
+In the workspace, go to the Variables tab.
+
+3️⃣ **Add AWS Credentials as Environment Variables**  
+
+   | **Variable Name**        | **Value**                | **Category**          | **Sensitive** |
+   |-------------------------|-------------------------|----------------------|--------------|
+   | `AWS_ACCESS_KEY_ID`     | `<YOUR_AWS_ACCESS_KEY>` | Environment Variable  | ✅            |
+   | `AWS_SECRET_ACCESS_KEY` | `<YOUR_AWS_SECRET_KEY>` | Environment Variable  | ✅            |
+   | `AWS_REGION`            | `<YOUR_AWS_REGION>`     | Environment Variable  | ❌ (Optional) |
+
+4️⃣ Click Save and ensure all variables are correctly added.
+
+Now, when Terraform runs in Terraform Cloud, it will automatically use these credentials.
+
 Then, log in to Terraform Cloud:
 ```sh
 terraform login
