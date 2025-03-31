@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "website_bucket" {
-  bucket = "my-static-site-diane"
+  bucket = "<YOUR_UNIQUE_BUCKET_NAME>" # Replace with your unique S3 bucket name
 }
 
 resource "aws_s3_bucket_ownership_controls" "ownership" {

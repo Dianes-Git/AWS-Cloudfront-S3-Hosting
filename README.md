@@ -36,7 +36,17 @@ By the end, your website will be accessible via a **CloudFront URL**, with a sim
 
 ---
 ## Project Structure
-📂 terraform-s3-cloudfront ├── 📂 website │ ├── index.html │ ├── styles.css │ └── images/ ├── main.tf ├── variables.tf ├── outputs.tf ├── backend.tf ├── README.md
+terraform-s3-cloudfront/
+│── website/               # Static website files
+│   ├── index.html         # Homepage file
+│   ├── styles.css         # Styling for the website
+│
+│── backend.tf             # Terraform Cloud backend configuration
+│── main.tf                # Terraform configuration for AWS resources
+│── outputs.tf             # Terraform output variables
+│── uploads.tf             # Handles file uploads to S3
+│── variables.tf           # Defines Terraform variables
+│── README.md              # Project documentation
 
 ---
 ## 🛠 Technologies Used  
