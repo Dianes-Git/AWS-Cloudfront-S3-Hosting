@@ -1,6 +1,6 @@
-# 🌍 Deploying a Static Website on AWS Using Terraform  
+# 🌍 Deploying a Static Website on AWS with S3, CloudFront, and Terraform  
 
-## 📌 Overview  
+## 📌 Project Overview 
 This project automates the deployment of a **static website** on AWS using **Terraform**. It provisions:  
 ✅ **Amazon S3** for website hosting  
 ✅ **CloudFront** as a CDN for global distribution  for content delivery and HTTPS
@@ -10,11 +10,10 @@ This project automates the deployment of a **static website** on AWS using **Ter
 Supports automatic deployment of website files to the S3 bucket
 
 
-
 By the end, your website will be accessible via a **CloudFront URL**, with a simple design.
 
 ---
-## Architecture Diagram
+## 📐 Architecture Diagram
 ```sh
 +------------------+
 |  Terraform Cloud |
@@ -36,7 +35,7 @@ By the end, your website will be accessible via a **CloudFront URL**, with a sim
 +------------------+
 ```
 ---
-## Project Structure
+## 📂 Project Structure
 ```sh
 terraform-s3-cloudfront/
 │── website/               # Static website files
@@ -70,8 +69,7 @@ Ensure you have the following installed:
 
 ### ✅ **2. Clone the Repository**  
 ```sh
-git clone https://github.com/Dianes-Git/static-website-aws-terraform.git
-cd static-website-aws-terraform
+git clone https://github.com/Dianes-Git/AWS-Cloudfront-S3-Hosting.git
 ```
 
 ### ✅ **3. Configure Terraform Cloud**
@@ -90,6 +88,9 @@ terraform {
 Edit: Replace <YOUR_TERRAFORM_ORG> with your Terraform Cloud organization name and <YOUR_TERRAFORM_WORKSPACE> with the workspace name you created in Terraform Cloud.
 
 Then, log in to Terraform Cloud:
+```sh
+terraform login
+```
 
 ### ✅ **4. Configure AWS Credentials**
 Ensure you have AWS credentials configured:
@@ -109,15 +110,15 @@ Default region (e.g., us-east-1)
 Customize the index.html inside the website/ folder to suit your needs.
 
 ### ✅ **6. Deploy the Infrastructure**
-5️⃣ Initialize Terraform
+ Initialize Terraform
 ```sh
 terraform init
 ```
-6️⃣ Validate Terraform Configuration
+Validate Terraform Configuration
 ```sh
 terraform validate
 ```
-7️⃣ Deploy with Terraform
+Deploy with Terraform
 ```sh
 terraform apply --auto-approve
 ```
@@ -127,7 +128,7 @@ This will:
 ✅ Configure CloudFront for global content distribution
 ✅ Apply necessary IAM permissions
 
-🔍 Verify Deployment
+### ✅ **7. Verify Deployment**
 After successful deployment, Terraform will output the CloudFront URL:
 ```sh
 Outputs:
@@ -135,7 +136,7 @@ cloudfront_url = "https://d123example.cloudfront.net"
 ```
 Open this URL in your browser to view the deployed website.
 
-🚀 Updating the Website
+### ✅ **8. Updating the Website**
 If you update the website/ folder (e.g., changing index.html):
 
 ```sh
@@ -147,12 +148,35 @@ Then invalidate the CloudFront cache:
 aws cloudfront create-invalidation --distribution-id <CloudFront-ID> --paths "/*" --output json
 ```
 
-### 🛠 Destroy the Infrastructure
+### ✅ **9. 🧹 Cleanup: Destroy the Infrastructure (Optional)**
 To remove all resources:
 
 ```sh
 terraform destroy --auto-approve
 ```
+---
+## 📸 Screenshots for Documentation
+### 1. **S3 Bucket Permissions**
+<img width="1268" alt="S3 Bucket Policy" src="https://github.com/user-attachments/assets/ef446d34-95d7-472d-b669-0b9f4f73e15b" />
+
+### 2. **S3 Bucket Website Configuration**
+<img width="1275" alt="S3 Static Website Hosting" src="https://github.com/user-attachments/assets/9ded3a01-07ba-47a5-85a1-c63a03cce439" />
+
+### 3. **CloudFront Distribution Setup**
+<img width="1276" alt="CloudFront Distribution Setup" src="https://github.com/user-attachments/assets/a3b7ba47-c6cf-4afb-aa38-6e339ac73d9c" />
+
+### 4. **Website Live on CloudFront**
+<img width="1272" alt="Live Website" src="https://github.com/user-attachments/assets/f2e270a0-89e8-43b1-bd95-85e87a65a000" />
+
+### 5. **Terraform Apply Output**
+<img width="1280" alt="Terraform Apply Execution" src="https://github.com/user-attachments/assets/164866af-d1c8-4b3b-a3c4-0cf17d5a2160" />
+
+### 6. **Terraform Cloud Integration**
+<img width="1271" alt="Terraform Cloud Integration" src="https://github.com/user-attachments/assets/92ab3df6-7d24-4f7a-a40a-ac273f748304" />
+
+### 7. **Terraform Destroy Execution**
+<img width="1280" alt="Terraform Destroy Execution" src="https://github.com/user-attachments/assets/c494c592-407b-4c1a-aa1b-c1f828e32b88" />
+
 
 ---
 ### 🛑 Troubleshooting Guide
@@ -191,23 +215,39 @@ aws cloudfront create-invalidation --distribution-id <CloudFront-ID> --paths "/*
 🔹 Problem: Terraform fails because it can't find a resource.
 🔹 Solution: Destroy and reapply everything:
 
-sh
-Copy
-Edit
+```sh
 terraform destroy --auto-approve
 terraform apply --auto-approve
+```
 
+---
+## 🎯 Why This Project Stands Out
+This project demonstrates:
 
+✅ Infrastructure as Code (IaC) – Everything is deployed using Terraform, ensuring consistency and repeatability. No manual setup needed!
+
+✅ Scalability & Performance – By leveraging AWS S3 and CloudFront, the website benefits from high availability, low latency, and global content delivery.
+
+✅ Automation with Terraform Cloud – Using a backend.tf file, the project integrates with Terraform Cloud, enabling remote state management and team collaboration.
+
+✅ Security Best Practices – The S3 bucket is private, with access restricted via CloudFront’s Origin Access Control (OAC), preventing direct exposure.
+
+✅ Simple Yet Elegant Design – Instead of a plain white page, the website includes a styled UI with colors, making it visually appealing while remaining lightweight.
+
+✅ Hands-on DevOps Experience – This project is a great showcase of using Terraform, AWS services, and cloud automation, making it highly relevant for cloud engineers and DevOps professionals.
+
+---
 📌 Next Steps
 ✅ Enhance website design with CSS
-✅ Add a contact form using AWS Lambda
-✅ Set up a custom domain with Route 53
-✅ Set up a custom domain using Route 53
+✅ Adding a contact form using AWS Lambda
+✅ Setting up a custom domain with Route 53
 ✅ Automate deployment with GitHub Actions
 
+---
+👩‍💻 Author
 
-
-💡 Author: 
 Diane Ihezue
+
+DevOps & Cloud Engineer 
 
 🎉 Congratulations on deploying your first AWS-hosted static website using Terraform! 🚀
