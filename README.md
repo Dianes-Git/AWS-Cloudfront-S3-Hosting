@@ -15,6 +15,7 @@ By the end, your website will be accessible via a **CloudFront URL**, with a sim
 
 ---
 ## Architecture Diagram
+```sh
 +------------------+
 |  Terraform Cloud |
 +------------------+
@@ -33,9 +34,10 @@ By the end, your website will be accessible via a **CloudFront URL**, with a sim
 +------------------+
 |    End Users     |
 +------------------+
-
+```
 ---
 ## Project Structure
+```sh
 terraform-s3-cloudfront/
 │── website/               # Static website files
 │   ├── index.html         # Homepage file
@@ -47,13 +49,13 @@ terraform-s3-cloudfront/
 │── uploads.tf             # Handles file uploads to S3
 │── variables.tf           # Defines Terraform variables
 │── README.md              # Project documentation
-
+```
 ---
 ## 🛠 Technologies Used  
 - **Terraform** → Infrastructure as Code (IaC)  
 - **AWS S3** → Static file storage  
 - **AWS CloudFront** → Content delivery network (CDN)  
-- **AWS IAM** → Access control  
+- **AWS IAM** → Access control
 
 ---
 
@@ -72,7 +74,7 @@ git clone https://github.com/Dianes-Git/static-website-aws-terraform.git
 cd static-website-aws-terraform
 ```
 
-### ✅ **3. Configure Terraform Cloud
+### ✅ **3. Configure Terraform Cloud**
 Ensure Terraform Cloud is set up by configuring the backend.tf file:
 ```sh
 terraform {
@@ -89,13 +91,12 @@ Edit: Replace <YOUR_TERRAFORM_ORG> with your Terraform Cloud organization name a
 
 Then, log in to Terraform Cloud:
 
-3️⃣ Configure AWS Credentials
+### ✅ **4. Configure AWS Credentials**
 Ensure you have AWS credentials configured:
 
-sh
-Copy
-Edit
+```sh
 aws configure
+```
 You'll be prompted to enter:
 
 AWS Access Key
@@ -104,25 +105,22 @@ AWS Secret Key
 
 Default region (e.g., us-east-1)
 
-4️⃣ Modify Website Files (Optional)
+### ✅ **5. Modify Website Files (Optional)**
 Customize the index.html inside the website/ folder to suit your needs.
 
-🏗 Deploy the Infrastructure
+### ✅ **6. Deploy the Infrastructure**
 5️⃣ Initialize Terraform
-sh
-Copy
-Edit
+```sh
 terraform init
+```
 6️⃣ Validate Terraform Configuration
-sh
-Copy
-Edit
+```sh
 terraform validate
+```
 7️⃣ Deploy with Terraform
-sh
-Copy
-Edit
+```sh
 terraform apply --auto-approve
+```
 This will:
 ✅ Create an S3 bucket and enable website hosting
 ✅ Upload website files to S3 automatically
@@ -131,36 +129,33 @@ This will:
 
 🔍 Verify Deployment
 After successful deployment, Terraform will output the CloudFront URL:
-
-makefile
-Copy
-Edit
+```sh
 Outputs:
 cloudfront_url = "https://d123example.cloudfront.net"
+```
 Open this URL in your browser to view the deployed website.
 
 🚀 Updating the Website
 If you update the website/ folder (e.g., changing index.html):
 
-sh
-Copy
-Edit
+```sh
 aws s3 sync website/ s3://<your-s3-bucket-name> --delete
-Then invalidate the CloudFront cache:
+```
 
-sh
-Copy
-Edit
+Then invalidate the CloudFront cache:
+```
 aws cloudfront create-invalidation --distribution-id <CloudFront-ID> --paths "/*" --output json
+```
 
 ### 🛠 Destroy the Infrastructure
 To remove all resources:
 
-sh
-Copy
-Edit
+```sh
 terraform destroy --auto-approve
-🛑 Troubleshooting Guide
+```
+
+---
+### 🛑 Troubleshooting Guide
 ❌ 1. Access Denied on S3 Files
 Issue: You see an XML error: Access Denied.
 
