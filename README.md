@@ -85,7 +85,7 @@ terraform {
   }
 }
 ```
-Edit: Replace <YOUR_TERRAFORM_ORG> with your Terraform Cloud organization name and <YOUR_TERRAFORM_WORKSPACE> with the workspace name you created in Terraform Cloud.
+Replace <YOUR_TERRAFORM_ORG> with your Terraform Cloud organization name and <YOUR_TERRAFORM_WORKSPACE> with the workspace name you created in Terraform Cloud.
 
 ### ✅ **4. Set Up AWS Credentials in Terraform Cloud**
 1️⃣ Navigate to Terraform Cloud, Select your organization and workspace (<YOUR_WORKSPACE_NAME>).
@@ -142,9 +142,13 @@ Deploy with Terraform
 terraform apply --auto-approve
 ```
 This will:
+
 ✅ Create an S3 bucket and enable website hosting
+
 ✅ Upload website files to S3 automatically
+
 ✅ Configure CloudFront for global content distribution
+
 ✅ Apply necessary IAM permissions
 
 ### ✅ **7. Verify Deployment**
@@ -257,9 +261,13 @@ This project demonstrates:
 
 ---
 📌 Next Steps
+
 ✅ Enhance website design with CSS
+
 ✅ Adding a contact form using AWS Lambda
+
 ✅ Setting up a custom domain with Route 53
+
 ✅ Automate deployment with GitHub Actions
 
 ---
